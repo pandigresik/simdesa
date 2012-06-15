@@ -1,0 +1,98 @@
+/* ----------- stylized ----------- */
+#stylized{
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+margin-top:10px;
+overflow:auto;
+padding:5px;
+}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:170px;
+float:left;
+clear:both;
+}
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:170px;
+}
+#stylized input,#stylized .input-link, #stylized textarea{
+float:left;
+font-size:12px;
+padding:4px 6px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:5px 0 5px 5px;
+}
+#stylized textarea{
+//width:300px;
+}
+#stylized .input-link{
+cursor:pointer;
+border:none;
+}
+#stylized select{
+float:left;
+font-size:12px;
+padding:4px 6px;
+border:solid 1px #aacfe4;
+width:214px;
+margin:2px 0 5px 5px;
+}
+#stylized button{
+clear:both;
+margin-left:175px;
+width:125px;
+height:31px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+float:left;
+}
+#stylized .ket{
+float:right;
+padding:2px 12px 2px 20px;
+margin:6px 50px 2px 2px;
+color:#FFFFFF;
+display:none;
+font-size:11px;
+font-weight:bolder;
+text-align:left;
+background:url('../img/warning.png') no-repeat left center #F47B7B;
+border:2px solid #E53B3B;
+vertical-align:middle;
+}
+#stylized span.icon-del{
+float:left;
+padding:7px;
+margin:5px 0 5px 5px;
+background:url('../img/b_usrdrop.png') no-repeat left;
+cursor:pointer;
+}
+.span_download{
+margin : 3px;
+float:right;
+font-weight:bolder;
+vertical-align:top;
+}

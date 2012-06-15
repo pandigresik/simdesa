@@ -1,0 +1,65 @@
+#surat_tampil{
+	width:480px;
+	border:1px solid #4D4D4D;
+	overflow:auto;
+	padding:3px;
+	margin:0 auto;
+}
+#kepala_surat{
+	width:450px;
+	margin:0 auto;
+	background:url('../img/gresik.jpeg') no-repeat left;
+	text-align:center;
+}
+#logo_surat{
+	display:none;
+}
+.garis{
+	border-bottom:1px solid #000;	
+	width:450px;
+	margin:0 auto;
+	margin-bottom:15px;
+	clear:both;
+}
+#content_surat{
+	width:450px;
+	position:auto;
+	padding-left:30px;
+	margin:0 auto;
+	}
+#content_surat label{
+display:block;
+width:140px;
+float:left;
+clear:both;
+}
+#content_surat span.s_kanan{
+float:left;
+max-width:200px;
+text-align:justify;
+}
+#content_surat span.titik{
+float:left;
+width:10px;
+}		
+#par_penutup,#par_pembuka,#nomer_surat{
+	clear:both;
+	position:relative;
+	width:450px;
+	margin:0 auto;
+	margin-bottom:15px;
+}	
+#nomer_surat{
+	text-align:center;
+}
+.masuk_alinea{
+	margin-right:20px;	
+}
+.tanda_tangan{
+	float:left;
+	text-align:center;
+	width:50%;
+}
+.kosong{
+margin-bottom:60px;
+}

@@ -1,0 +1,90 @@
+*{
+	background:none;
+	border:none;
+}
+body { 
+width:100% !important;
+margin:0 !important;
+padding:0 !important;
+line-height: 1.4;
+word-spacing:1.5pt;
+letter-spacing:0.2pt; font-family: Garamond,"Times New Roman", serif; color: #000; 
+background:none; font-size: 12pt; }
+#header,#left-column,#footer{
+	display:none;
+}
+#middle,#center-column,#main{
+	background:#FFF;
+	width:100%;
+	border:none;
+	box-shadow:none;
+}
+#surat_tampil{
+	width:95%;
+	padding:3px;
+	margin:0 auto;
+	border:none;
+	background:none;
+	}
+#kepala_surat{
+	width:95%;
+	margin:0 auto;
+	background:url('../img/gresik.jpeg') no-repeat left red;
+	text-align:center;
+	font-size: 13pt;
+}
+#logo_surat{
+	display:block;
+	position:absolute;
+	top:10px;
+	left:50px;
+}
+.garis{
+	border-bottom:1px solid #000;	
+	width:94%;
+	margin:0 auto;
+	margin-bottom:15px;
+	clear:both;
+}
+#content_surat{
+	width:95%;
+	position:auto;
+	padding-left:30px;
+	margin:0 auto;
+	}
+#content_surat label{
+display:block;
+width:29%;
+float:left;
+clear:both;
+}
+#content_surat span.titik{
+float:left;
+width:1%;
+}	
+#content_surat span.s_kanan{
+float:left;
+max-width:50%;
+text-align:justify;
+}	
+#par_penutup,#par_pembuka,#nomer_surat{
+	clear:both;
+	position:relative;
+	width:95%;
+	margin:0 auto;
+	margin-bottom:15px;
+}	
+#nomer_surat{
+	text-align:center;
+}
+.masuk_alinea{
+	margin-right:50px;	
+}
+.tanda_tangan{
+	float:left;
+	text-align:center;
+	width:50%;
+}
+.kosong{
+margin-bottom:70px;
+}
