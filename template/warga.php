@@ -6,8 +6,8 @@ include_once "../include/koneksi.php";
 $data = $_REQUEST['data'];
 $sql  = "SELECT no_ktp, nama, agama, t_lahir, DATE_FORMAT(tgl_lahir,'%d %M %Y'), if(j_kel= 'L','Laki - Laki','Wanita'),";
 $sql .=" gol_darah, w_negara, pendidikan, pekerjaan, s_nikah, status FROM warga WHERE no_ktp='".$data."'";
-$sql_exe = mysql_query($sql);
-$isi_data = mysql_fetch_row($sql_exe);
+$sql_exe = mysqli_query($conn,$sql);
+$isi_data = mysqli_fetch_row($sql_exe);
 ?>
 <div id="stylized" style="text-align:center;font-size:85%">
 <h1 style="text-align:center;text-decoration:underline;font-style:oblique">Detail Data Warga</h1>	

@@ -39,10 +39,10 @@ $input_detail = substr($input_detail,0,strlen($input_detail) - 1);
 $nilai_input_keluarga = buatStringNilai($input_keluarga);
 $kolomnya = buatStringKolom($kolom_keluarga);
 $sql = "insert into keluarga (".$kolomnya.") values (".$nilai_input_keluarga.")";
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
 	$sql_det = "insert into det_keluarga values ".$input_detail;
-	$sql_det_exe = mysql_query($sql_det);
+	$sql_det_exe = mysqli_query($conn,$sql_det);
 	if($sql_det_exe){
 		$status = 1;
 		}

@@ -3,29 +3,39 @@
 include_once "include/koneksi.php";
 include_once "include/config.php";
 $tgl_sekarang = date("d-m-Y");
-$bulan = Array("01" =>"Januari","02" =>"Pebruari","03" =>"Maret","04" =>"April","05" =>"Mei","06" =>"Juni","07" =>"Juli","08" =>"Agustus","09" =>"September","10" =>"Oktober","11" =>"Nopember","12" =>"Desember");
+$bulan = array("01" =>"Januari","02" =>"Pebruari","03" =>"Maret","04" =>"April","05" =>"Mei","06" =>"Juni","07" =>"Juli","08" =>"Agustus","09" =>"September","10" =>"Oktober","11" =>"Nopember","12" =>"Desember");
 $tgl_arr=explode("-",$tgl_sekarang);
 $periode = $tgl_arr['1']."-".$tgl_arr['2'];
 // jumlah penduduk
-$jumlah_lk = mysql_result(mysql_query("select count(*) from warga where status = '1' and j_kel='L'"),0);
-$jumlah_pr = mysql_result(mysql_query("select count(*) from warga where status = '1' and j_kel='W'"),0);
-$jumlah_semua = $jumlah_lk + $jumlah_pr;
+$tmp_lk = mysqli_query($conn,"select count(*) from warga where status = '1' and j_kel='L'");
+$tmp_pr = mysqli_query($conn,"select count(*) from warga where status = '1' and j_kel='W'");
+$jumlah_lk = mysqli_fetch_row($tmp_lk);
+$jumlah_pr = mysqli_fetch_row($tmp_pr);
+$jumlah_semua = $jumlah_lk[0] + $jumlah_pr[0];
 // jumlah mutasi penduduk ( lahir, mati, keluar ,masuk) untuk bulan ini
-$jumlah_datang_lk = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='masuk'"),0);
-$jumlah_datang_pr = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='masuk'"),0);
-$jumlah_semua_datang = $jumlah_datang_lk + $jumlah_datang_pr;
-$jumlah_keluar_lk = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='keluar'"),0);
-$jumlah_keluar_pr = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='keluar'"),0);
-$jumlah_semua_keluar = $jumlah_keluar_lk + $jumlah_keluar_pr;
-$jumlah_lahir_lk = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='lahir'"),0);
-$jumlah_lahir_pr = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='lahir'"),0);
-$jumlah_semua_lahir = $jumlah_lahir_lk + $jumlah_lahir_pr;
-$jumlah_wafat_lk = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='wafat'"),0);
-$jumlah_wafat_pr = mysql_result(mysql_query("select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='wafat'"),0);
-$jumlah_semua_wafat = $jumlah_wafat_lk + $jumlah_wafat_pr;
+$jml_datang_lk = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='masuk'");
+$jml_datang_pr = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='masuk'");
+$jumlah_datang_lk = mysqli_fetch_row($jml_datang_lk);
+$jumlah_datang_pr = mysqli_fetch_row($jml_datang_pr);
+$jumlah_semua_datang = $jumlah_datang_lk[0] + $jumlah_datang_pr[0];
+$jml_keluar_lk = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='keluar'");
+$jml_keluar_pr = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='keluar'");
+$jumlah_keluar_lk = mysqli_fetch_row($jml_keluar_pr);
+$jumlah_keluar_pr = mysqli_fetch_row($jml_keluar_lk);
+$jumlah_semua_keluar = $jumlah_keluar_lk[0] + $jumlah_keluar_pr[0];
+$jml_lahir_lk = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='lahir'");
+$jml_lahir_pr = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='lahir'");
+$jumlah_lahir_lk = mysqli_fetch_row($jml_lahir_lk);
+$jumlah_lahir_pr = mysqli_fetch_row($jml_lahir_pr);
+$jumlah_semua_lahir = $jumlah_lahir_lk[0] + $jumlah_lahir_pr[0];
+$jml_wafat_lk = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='L' and jenis_mutasi='wafat'");
+$jml_wafat_pr = mysqli_query($conn,"select count(*) from v_mutasi_warga where periode = '".$periode."' and j_kel='W' and jenis_mutasi='wafat'");
+$jumlah_wafat_lk = mysqli_fetch_row($jml_wafat_lk);
+$jumlah_wafat_pr = mysqli_fetch_row($jml_wafat_pr);
+$jumlah_semua_wafat = $jumlah_wafat_lk[0] + $jumlah_wafat_pr[0];
 // jumlah bulan lalu
-$jumlah_bulan_lalu_pr = $jumlah_pr + $jumlah_keluar_pr + $jumlah_wafat_pr - $jumlah_datang_pr - $jumlah_lahir_pr;
-$jumlah_bulan_lalu_lk = $jumlah_lk + $jumlah_keluar_lk + $jumlah_wafat_lk - $jumlah_datang_lk - $jumlah_lahir_lk;
+$jumlah_bulan_lalu_pr = $jumlah_pr[0] + $jumlah_keluar_pr[0] + $jumlah_wafat_pr[0] - $jumlah_datang_pr[0] - $jumlah_lahir_pr[0];
+$jumlah_bulan_lalu_lk = $jumlah_lk[0] + $jumlah_keluar_lk[0] + $jumlah_wafat_lk[0] - $jumlah_datang_lk[0] - $jumlah_lahir_lk[0];
 $jumlah_bulan_lalu = $jumlah_bulan_lalu_lk + $jumlah_bulan_lalu_pr;
 ?>
 <div id="div_lap">
@@ -69,11 +79,11 @@ $jumlah_bulan_lalu = $jumlah_bulan_lalu_lk + $jumlah_bulan_lalu_pr;
 		<tr>
 			<td></td>
 			<td><?php echo $jumlah_bulan_lalu ?></td><td><?php echo $jumlah_bulan_lalu_lk ?></td><td><?php echo $jumlah_bulan_lalu_pr ?></td>
-			<td class="data_lahir"><?php echo $jumlah_semua_lahir ?></td><td class="data_lahir"><?php echo $jumlah_lahir_lk ?></td><td class="data_lahir"><?php echo $jumlah_lahir_pr ?></td>
-			<td class="data_wafat"><?php echo $jumlah_semua_wafat ?></td><td class="data_wafat"><?php echo $jumlah_wafat_lk ?></td><td class="data_wafat"><?php echo $jumlah_wafat_pr ?></td>
-			<td class="data_keluar"><?php echo $jumlah_semua_keluar ?></td><td class="data_keluar"><?php echo $jumlah_keluar_lk ?></td><td class="data_keluar"><?php echo $jumlah_keluar_pr ?></td>
-			<td class="data_datang"><?php echo $jumlah_semua_datang ?></td><td class="data_datang"><?php echo $jumlah_datang_lk ?></td><td class="data_datang"><?php echo $jumlah_datang_pr ?></td>
-			<td class="data_semua"><?php echo $jumlah_semua ?></td><td class="data_semua"><?php echo $jumlah_lk ?></td><td class="data_semua"><?php echo $jumlah_pr ?></td>
+			<td class="data_lahir"><?php echo $jumlah_semua_lahir ?></td><td class="data_lahir"><?php echo $jumlah_lahir_lk[0] ?></td><td class="data_lahir"><?php echo $jumlah_lahir_pr[0] ?></td>
+			<td class="data_wafat"><?php echo $jumlah_semua_wafat ?></td><td class="data_wafat"><?php echo $jumlah_wafat_lk[0] ?></td><td class="data_wafat"><?php echo $jumlah_wafat_pr[0] ?></td>
+			<td class="data_keluar"><?php echo $jumlah_semua_keluar ?></td><td class="data_keluar"><?php echo $jumlah_keluar_lk[0] ?></td><td class="data_keluar"><?php echo $jumlah_keluar_pr[0] ?></td>
+			<td class="data_datang"><?php echo $jumlah_semua_datang ?></td><td class="data_datang"><?php echo $jumlah_datang_lk[0] ?></td><td class="data_datang"><?php echo $jumlah_datang_pr[0] ?></td>
+			<td class="data_semua"><?php echo $jumlah_semua ?></td><td class="data_semua"><?php echo $jumlah_lk[0] ?></td><td class="data_semua"><?php echo $jumlah_pr[0] ?></td>
 		</tr>
 	</tbody>	
 </table>

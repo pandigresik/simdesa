@@ -11,7 +11,7 @@ $data_id = $_REQUEST['data_id'];
 $tabel = $_REQUEST['tbl'];
 $nama_kolom = $_REQUEST['nama'];
 $sql = "update ".$tabel." set ".$nama_kolom."='".$data."' where ".$nama_id."='".$data_id."'";
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
 	$status = 1;
 	}

@@ -41,7 +41,7 @@ $tanda_tangan = json_encode($tanda_tangan);
 $nama_kolom = "(jenis_surat,no_surat,nama_surat,tanggal,isi_surat,tanda_tangan,id_warga,nama_warga)";
 $nilai_input = "('".$jenis_surat."','".$no_surat."','".$nama_surat."',now(),'".addslashes($isi_surat)."','".addslashes($tanda_tangan)."','".$id_warga."','".$nama_warga."')"; 
 $sql = "insert into surat ".$nama_kolom." values ".$nilai_input;
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
 	$status = 1;
 	}

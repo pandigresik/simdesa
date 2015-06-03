@@ -9,17 +9,18 @@ include_once "include/config.php";
 $bag_sekarang  = 1;
 $bag_prev = $bag_sekarang - 1;		
 $bag_next = $bag_sekarang + 1;
-$sql_total = "SELECT count(*) FROM surat".$cari;		
-$jum_total = mysql_result(mysql_query($sql_total),0);
-$jum_hal = ceil($jum_total / $limit);
+$sql_total = "SELECT count(*) FROM surat";		
+$tmp = mysqli_query($conn,$sql_total);
+$jum_total = mysqli_fetch_row($tmp);
+$jum_hal = ceil($jum_total[0] / $limit);
 $total_bagian = ceil($jum_hal / $paging_tampil);
 $sql = "SELECT id_surat,jenis_surat,no_surat,nama_surat,tanggal,nama_warga from surat";
-$sql_exe = mysql_query($sql);
-$jum_kolom = mysql_num_fields($sql_exe);
+$sql_exe = mysqli_query($conn,$sql);
+$jum_kolom = mysqli_num_fields($sql_exe);
 			$title = array();
 			for($i = 0; $i < $jum_kolom; $i++){
-					$nm_kolom = mysql_field_name($sql_exe,$i);
-					array_push($title,$nm_kolom);
+					$nm_kolom = mysqli_fetch_field($sql_exe);
+					array_push($title,$nm_kolom->name);
 }
 ?>
 <div class="top-bar">
@@ -73,7 +74,7 @@ for($i = 1; $i <= $total_bagian;$i++){
 	echo "<option>$i</option>";
 	}
 echo "</select></span>";
-echo "<span style='font-size:0.6em'>Total data :<span id='jum_data'><strong>$jum_total</strong></span></span>";
+echo "<span style='font-size:0.6em'>Total data :<span id='jum_data'><strong>".$jum_total[0]."</strong></span></span>";
 echo "</div>";
 echo "</div>";
 ?>

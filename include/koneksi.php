@@ -5,8 +5,8 @@
  */
 $user = "root";
 $host = "localhost";
-$pass = "ahmadafandi";
+$pass = "2hm2dafandi";
 $db = "simdes";
-mysql_connect($host,$user,$pass) or die("koneksi gagal");
-mysql_select_db($db) or die("database tidak ditemukan");
+$conn = mysqli_connect($host,$user,$pass,$db) or die("koneksi gagal");
+
 ?>

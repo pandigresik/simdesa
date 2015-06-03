@@ -4,8 +4,8 @@ include_once "../include/koneksi.php";
 include_once "../include/config.php";
 $data = $_REQUEST['data'];
 $sql = "SELECT id_surat,jenis_surat,no_surat,nama_surat,DATE_FORMAT(tanggal,'%d  - %m  - %Y') as tanggal,isi_surat,tanda_tangan,id_warga,nama_warga FROM surat where id_surat='".$data."'";
-$sql_exe = mysql_query($sql);
-$data_surat = mysql_fetch_assoc($sql_exe);
+$sql_exe = mysqli_query($conn,$sql);
+$data_surat = mysqli_fetch_assoc($sql_exe);
 
 $jenis_surat = $data_surat['jenis_surat'];
 //cek apakah termasuk surat keterangan (SK...) atau tidak

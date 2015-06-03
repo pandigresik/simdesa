@@ -26,22 +26,24 @@ if(isset($_REQUEST['hal'])){
 $sql_kirim = urlDecode($_REQUEST['sql']);	
 $sql_kirim = stripslashes($sql_kirim);
 $sql = $sql_kirim." order by ".$nama_id." limit $hal,$limit";	
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 $no = $hal_ke = $hal + 1;
+$tampil = '';
+
 if($sql_exe){
     $tampil .="<table class='listing' cellpadding='0' cellspacing='0'>";
     $tampil .="<tr>";
-			$jum_kolom = mysql_num_fields($sql_exe);
+			$jum_kolom = mysqli_num_fields($sql_exe);
 			$tampil .= "<th class='full'>No</th>";	
 			$title = array();
 			for($i = 0; $i < $jum_kolom; $i++){
-					$nm_kolom = mysql_field_name($sql_exe,$i);
-					array_push($title,$nm_kolom);
-					$tampil .= "<th class='full'>".$nm_kolom."</th>";	
+					$nm_kolom = mysqli_fetch_field($sql_exe);
+					array_push($title,$nm_kolom->name);
+					$tampil .= "<th class='full'>".$nm_kolom->name."</th>";	
 				}
 			$tampil .= "<th class='full' colspan='2'>Aksi</th>";	
 			$tampil .= "</tr>";				
-		while($data = mysql_fetch_row($sql_exe)){
+		while($data = mysqli_fetch_row($sql_exe)){
 			$tampil .= "<tr>";
 			$tampil .= "<td>".$no++."</td>";
 			for($i = 0; $i < count($data);$i++){

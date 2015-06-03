@@ -5,7 +5,9 @@ include_once "include/config.php";
 $jenis_surat = $_GET['kode_surat'];
 // ambil nomer surat terakhir
 $sql_nomer_surat = "select count(*) from surat where jenis_surat = '".$jenis_surat."'";
-$nomer_terakhir = $awal_nomer_surat[$jenis_surat] + mysql_result(mysql_query($sql_nomer_surat),0) + 1;
+$tmp_surat = mysqli_query($conn,$sql_nomer_surat);
+$jml = mysqli_fetch_row($tmp_surat);
+$nomer_terakhir = $awal_nomer_surat[$jenis_surat] + ($jml[0] + 1);
 if(isset($_GET['nama'])){
 	$nama_surat = $_GET['nama'];
 	}
@@ -15,7 +17,7 @@ else{
 $tahun = date("Y");
 $nomer_surat = $j_surat[$jenis_surat]."/".$nomer_terakhir."/".$desa["kode"]."/".$tahun;
 // handle tanda tangan yang bersangkutan
-if($id_surat == "SK"){
+if($jenis_surat == "SK"){
 	$ybs = "style='display:block'";
 	}
 else {

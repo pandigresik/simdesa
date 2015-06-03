@@ -28,19 +28,19 @@ for($i = 0; $i < count($data); $i++){
 $nilai_input = buatStringNilai($nilai);
 $kolomnya = buatStringKolom($nama_kolom);
 $sql = "insert into warga (".$kolomnya.") values (".$nilai_input.")";
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
-	mysql_query("insert into mutasi_warga (id_warga,jenis_mutasi,tanggal,keterangan) values ('".$id_warga."','".$mutasi."','".$tanggal."','".$ket."')");
+	mysqli_query($conn,"insert into mutasi_warga (id_warga,jenis_mutasi,tanggal,keterangan) values ('".$id_warga."','".$mutasi."','".$tanggal."','".$ket."')");
 	$status = 1;
 	}
 }
 else {
 // simpan ke tabel mutasi_warga
 $sql = "insert into mutasi_warga (id_warga,jenis_mutasi,tanggal,keterangan) values ('".$id_warga."','".$mutasi."','".$tanggal."','".$ket."')";
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
 	// update data warga tersebut pada tabel warga, status = 0
-	mysql_query("update warga set status='".$status_warga."' where no_ktp='".$id_warga."'");
+	mysqli_query($conn,"update warga set status='".$status_warga."' where no_ktp='".$id_warga."'");
 	$status = 1;
 	}
 }	

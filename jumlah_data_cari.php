@@ -2,11 +2,11 @@
 include_once "include/koneksi.php";
 
 // untuk update data
-$tabel = $_REQUEST['tabel'];
+$tabel = isset($_REQUEST['tabel']) ? $_REQUEST['tabel'] : '';
 $sql = urlDecode($_REQUEST['sql']);	
 $sql = stripslashes($sql); // hapus tanda /
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
-	echo mysql_num_rows($sql_exe);	
+	echo mysqli_num_rows($sql_exe);	
 }
 ?>

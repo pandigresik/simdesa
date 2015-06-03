@@ -5,8 +5,8 @@
 include_once "../include/koneksi.php";
 $data = $_REQUEST['data'];
 $sql  = "SELECT  id_keluarga , CONCAT(alamat ,\" dusun \",dusun,\" RT \",rt ,\" RW \",rw ) AS alamat,ekonomi FROM  keluarga where id_keluarga='".$data."'"; 
-$sql_exe = mysql_query($sql);
-$isi_data = mysql_fetch_row($sql_exe);
+$sql_exe = mysqli_query($conn,$sql);
+$isi_data = mysqli_fetch_row($sql_exe);
 ?>
 <div id="stylized" style="text-align:center;font-size:85%">
 <h1 style="text-align:center;text-decoration:underline;font-style:oblique">Detail Data Keluarga</h1>	
@@ -27,7 +27,7 @@ $isi_data = mysql_fetch_row($sql_exe);
 <!-- tampilkan anggota keluarga -->
 <?php
 $sql_keluarga = "select no_ktp,nama,agama,t_lahir,tgl_lahir,j_kel,s_nikah FROM v_detail_warga where id_keluarga='".$isi_data['0']."'";
-$sql_kel_exe = mysql_query($sql_keluarga);
+$sql_kel_exe = mysqli_query($conn,$sql_keluarga);
 ?>
 <div>
 	<fieldset style="background-color:#FFF;margin:0 auto;padding:1px;border-radius:5px">
@@ -45,7 +45,7 @@ $sql_kel_exe = mysql_query($sql_keluarga);
 		</tr>
 <?php
 	$no = 1;
-	while($baris = mysql_fetch_row($sql_kel_exe)){
+	while($baris = mysqli_fetch_row($sql_kel_exe)){
 		echo "<tr>";
 		echo "<td>".$no++."</td>";
 			for($i = 0; $i < count($baris); $i++){

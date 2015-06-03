@@ -22,7 +22,7 @@ for($i = 0; $i < count($data); $i++){
 $nilai_input = buatStringNilai($nilai);
 $kolomnya = buatStringKolom($nama_kolom);
 $sql = "insert into warga (".$kolomnya.") values (".$nilai_input.")";
-$sql_exe = mysql_query($sql);
+$sql_exe = mysqli_query($conn,$sql);
 if($sql_exe){
 	$status = 1;
 	}
